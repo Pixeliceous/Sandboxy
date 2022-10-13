@@ -2,7 +2,7 @@ extends KinematicBody
 
 var speed = 40
 var gravity = 9.8
-var jump = 7
+var jump = 4
 var cameraAcceleration = 50
 var sense = .1
 var snap
@@ -17,7 +17,7 @@ onready var camera = $Head/Camera
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 		head.rotate_x(deg2rad(-event.relative.y * sense))
 		
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
-	pass
+
 
 func _physics_process(delta: float) -> void:
 	direction = Vector3.ZERO
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		snap = Vector3.ZERO
 		gravityVector = Vector3.UP * jump
 		
-	vel = vel.linear_interpolate(direction * speed, delta)
+	vel = vel.linear_interpolate(direction * speed, delta * 6)
 	movement = vel + gravityVector
 	
 	move_and_slide_with_snap(movement, snap, Vector3.UP)
