@@ -20,4 +20,4 @@ shape = SubResource( 2 )
 [node name="Head" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11534, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62974, -0.339936 )
