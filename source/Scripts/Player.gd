@@ -1,5 +1,7 @@
 extends KinematicBody
 
+#-----------------------------------------------------------
+# Set variables
 var speed = 40
 var gravity = 9.8
 var jump = 4
@@ -12,13 +14,22 @@ var vel = Vector3()
 var gravityVector = Vector3()
 var movement = Vector3()
 
+#-----------------------------------------------------------
+# Set object variables
+#-----------------------------------------------------------
 onready var head = $Head
 onready var camera = $Head/Camera
 
+#-----------------------------------------------------------
+# Keep the mouse within the viewport
+#-----------------------------------------------------------
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
+#-----------------------------------------------------------
+# Look around with the mouse in 1st person view
+#-----------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg2rad(-event.relative.x * sense))
@@ -27,6 +38,9 @@ func _input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
 
 
+#-----------------------------------------------------------
+# Walk and jump around with set inputs
+#-----------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	direction = Vector3.ZERO
 	var horizontalRot = global_transform.basis.get_euler().y
